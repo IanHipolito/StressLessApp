@@ -1,8 +1,11 @@
 package com.example.stressless;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,5 +13,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button buttonMeditation = findViewById(R.id.buttonMeditation);
+        Button buttonBreathing = findViewById(R.id.buttonBreathing);
+        Button buttonMindfulness = findViewById(R.id.buttonMindfulness);
+
+        buttonMeditation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start the MeditationActivity when the "Meditation" button is clicked
+                startActivity(new Intent(MainActivity.this, MeditationActivity.class));
+            }
+        });
+
+        buttonBreathing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start the BreathingActivity when the "Breathing Exercises" button is clicked
+                startActivity(new Intent(MainActivity.this, BreathingActivity.class));
+            }
+        });
+
+        buttonMindfulness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start the MindfulnessActivity when the "Mindfulness Challenges" button is clicked
+                startActivity(new Intent(MainActivity.this, MindfulnessActivity.class));
+            }
+        });
     }
+}
+
 }
