@@ -35,6 +35,25 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
-    <!-- You can add more UI elements here as needed -->
+    <Button
+        android:id="@+id/previousButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="65dp"
+        android:layout_toStartOf="@+id/playButton"
+        android:layout_toLeftOf="@+id/playButton"
+        android:text="Previous" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="65dp"
+        android:layout_toEndOf="@+id/playButton"
+        android:layout_toRightOf="@+id/playButton"
+        android:text="Next" />
 
 </RelativeLayout>
