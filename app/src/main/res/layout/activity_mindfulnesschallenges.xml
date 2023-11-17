@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/appbackground4"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/challengeOfTheDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Challenge of the day will appear here"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/journalEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write your journal entry here"
+        android:layout_below="@id/challengeOfTheDay"
+        android:layout_marginTop="22dp"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:minHeight="150dp" />
+
+    <Button
+        android:id="@+id/saveEntryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Entry"
+        android:layout_below="@id/journalEntry"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/lastSavedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last save time will appear here"
+        android:layout_below="@id/saveEntryButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
+
+</RelativeLayout>

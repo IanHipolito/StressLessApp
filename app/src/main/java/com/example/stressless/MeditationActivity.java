@@ -14,7 +14,8 @@ public class MeditationActivity extends AppCompatActivity{
     private Button stopButton;
     private Button previousButton;
     private Button nextButton;
-    private int[] songs = {R.raw.meditation_music, R.raw.meditation_music2, R.raw.meditation_music3, R.raw.meditation_music4};
+    private int[] songs = {R.raw.meditation_music, R.raw.meditation_music2, R.raw.meditation_music3,
+            R.raw.meditation_music4};
     private int currentSongIndex = 0;
 
     @Override

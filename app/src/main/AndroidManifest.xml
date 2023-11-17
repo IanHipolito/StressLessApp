@@ -26,6 +26,15 @@
             android:name=".MeditationActivity">
         </activity>
 
+        <activity
+            android:name=".BreathingActivity">
+        </activity>
+
+        <activity
+            android:name=".MindfulnessActivity">
+        </activity>
+
+
     </application>
 
 </manifest>
