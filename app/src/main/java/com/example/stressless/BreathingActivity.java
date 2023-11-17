@@ -16,11 +16,9 @@ public class BreathingActivity extends AppCompatActivity {
 
         videoView = findViewById(R.id.videoView);
 
-        // Set the URI of the video to be played
         String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.takeadeepbreath;
         videoView.setVideoURI(Uri.parse(uriPath));
 
-        // Set an on click listener on the VideoView
         videoView.setOnClickListener(v -> {
             if (videoView.isPlaying()) {
                 videoView.pause();
