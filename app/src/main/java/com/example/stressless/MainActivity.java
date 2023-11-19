@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         buttonMeditation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Start the MeditationActivity when the "Meditation" button is clicked
                 startActivity(new Intent(MainActivity.this, MeditationActivity.class));
             }
         });
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         buttonBreathing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Start the BreathingActivity when the "Breathing Exercises" button is clicked
                 startActivity(new Intent(MainActivity.this, BreathingActivity.class));
             }
         });
@@ -37,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         buttonMindfulness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Start the MindfulnessActivity when the "Mindfulness Challenges" button is clicked
                 startActivity(new Intent(MainActivity.this, MindfulnessActivity.class));
             }
         });

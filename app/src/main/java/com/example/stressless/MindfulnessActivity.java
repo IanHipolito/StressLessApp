@@ -54,8 +54,6 @@ public class MindfulnessActivity extends AppCompatActivity {
         String entryText = journalEntry.getText().toString();
         String currentTime = dateFormat.format(new Date());
 
-        // TODO: Save the entry text and current time to persistent storage (like SharedPreferences or a database)
-
         lastSavedTime.setText("Last saved on: " + currentTime);
         journalEntry.setText("");
     }
