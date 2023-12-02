@@ -7,18 +7,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BreathingActivity extends AppCompatActivity {
 
-    private VideoView videoView;
+    private VideoView videoView1, videoView2, videoView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breathing);
 
-        videoView = findViewById(R.id.videoView);
+        videoView1 = findViewById(R.id.videoView);
+        videoView2 = findViewById(R.id.videoView2);
+        videoView3 = findViewById(R.id.videoView3);
 
-        String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.takeadeepbreath;
-        videoView.setVideoURI(Uri.parse(uriPath));
+        String uriPath1 = "android.resource://" + getPackageName() + "/" + R.raw.exercise1;
+        videoView1.setVideoURI(Uri.parse(uriPath1));
 
+        String uriPath2 = "android.resource://" + getPackageName() + "/" + R.raw.exercise2;
+        videoView2.setVideoURI(Uri.parse(uriPath2));
+
+        String uriPath3 = "android.resource://" + getPackageName() + "/" + R.raw.exercise3;
+        videoView3.setVideoURI(Uri.parse(uriPath3));
+
+        setVideoViewListener(videoView1);
+        setVideoViewListener(videoView2);
+        setVideoViewListener(videoView3);
+    }
+
+    private void setVideoViewListener(VideoView videoView) {
         videoView.setOnClickListener(v -> {
             if (videoView.isPlaying()) {
                 videoView.pause();
@@ -28,3 +42,4 @@ public class BreathingActivity extends AppCompatActivity {
         });
     }
 }
+
