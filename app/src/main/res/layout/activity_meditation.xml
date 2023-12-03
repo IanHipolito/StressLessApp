@@ -1,60 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@drawable/appbackground2"
-    tools:context=".MeditationActivity">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewInstruction"
+        android:id="@+id/songTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Meditation Music"
+        android:text="Song Title"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentTop="true"/>
+        android:layout_marginTop="16dp"/>
 
-    <Button
-        android:id="@+id/playButton"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/songListView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Play"
-        android:layout_below="@id/textViewInstruction"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@id/songTitleTextView"
+        android:layout_marginTop="16dp"/>
 
-    <Button
-        android:id="@+id/stopButton"
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:id="@+id/songProgressBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stop"
-        android:layout_below="@id/playButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_below="@id/songListView"
+        android:layout_marginTop="16dp" />
 
-    <Button
-        android:id="@+id/previousButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="65dp"
-        android:layout_toStartOf="@+id/playButton"
-        android:layout_toLeftOf="@+id/playButton"
-        android:text="Previous" />
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="66dp"
-        android:layout_marginTop="65dp"
-        android:layout_toEndOf="@+id/playButton"
-        android:layout_toRightOf="@+id/playButton"
-        android:text="Next" />
+        <ImageButton
+            android:id="@+id/previousButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_skip_previous_24" />
 
+        <ImageButton
+            android:id="@+id/playPauseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_play_arrow_24" />
+
+        <ImageButton
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_skip_next_24" />
+    </LinearLayout>
 </RelativeLayout>
