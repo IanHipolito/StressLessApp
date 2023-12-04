@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:gravity="center">
+    android:background="#F0F4F7">
+
+    <View
+        android:id="@+id/breathingCircleLarge"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:background="@drawable/baseline_circle_24_large"
+        android:alpha="0.5"
+        android:layout_centerInParent="true"/>
+
+    <View
+        android:id="@+id/breathingCircleMedium"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/baseline_circle_24_medium"
+        android:alpha="0.7"
+        android:layout_centerInParent="true"/>
 
     <View
         android:id="@+id/breathingCircle"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/baseline_circle_24"
-        android:layout_gravity="center"/>
+        android:layout_centerInParent="true"/>
 
     <TextView
         android:id="@+id/breathingInstruction"
@@ -18,14 +34,35 @@
         android:layout_height="wrap_content"
         android:text="Inhale"
         android:textSize="18sp"
-        android:layout_gravity="center"/>
+        android:textColor="#333333"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/timerTextView"/>
+
+    <TextView
+        android:id="@+id/timerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:layout_centerInParent="true"/>
 
     <Button
         android:id="@+id/startBreathingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
+        android:text="Start Breathing"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:elevation="4dp"
         android:layout_marginBottom="50dp"
-        android:text="Start Breathing" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
 
-</FrameLayout>
+    <NumberPicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-19dp" />
+
+</RelativeLayout>
