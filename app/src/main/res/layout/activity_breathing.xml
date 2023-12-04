@@ -14,16 +14,13 @@
             android:id="@+id/textView"
             android:layout_width="354dp"
             android:layout_height="72dp"
-            android:layout_marginStart="141dp"
-            android:layout_marginTop="49dp"
-            android:layout_marginEnd="142dp"
-            android:layout_marginBottom="84dp"
             android:text="Breathing Exercises"
-            android:textSize="6mm"
             android:textColor="@color/black"
+            android:textSize="6mm"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/videoView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,9 +28,9 @@
             android:id="@+id/videoView"
             android:layout_width="376dp"
             android:layout_height="231dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="76dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintHorizontal_bias="0.457"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -41,28 +38,25 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="112dp"
-            android:layout_marginEnd="320dp"
-            android:layout_marginBottom="29dp"
             android:text="Exercise 1:"
+            android:textColor="@color/black"
             android:textSize="3mm"
             android:textStyle="bold"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/videoView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.768" />
 
         <VideoView
             android:id="@+id/videoView2"
             android:layout_width="376dp"
             android:layout_height="231dp"
-            android:layout_marginTop="104dp"
+
+            android:layout_marginTop="108dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.542"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/videoView" />
 
@@ -70,32 +64,28 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="47dp"
-            android:layout_marginEnd="287dp"
-            android:layout_marginBottom="30dp"
             android:text="Exercise 2:"
             android:textColor="@color/black"
             android:textSize="3mm"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/videoView2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/videoView" />
+            app:layout_constraintTop_toBottomOf="@+id/videoView"
+            app:layout_constraintVertical_bias="0.691" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="46dp"
-            android:layout_marginEnd="285dp"
-            android:layout_marginBottom="37dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="53dp"
+            android:layout_marginEnd="294dp"
             android:text="Exercise 3:"
             android:textColor="@color/black"
             android:textSize="3mm"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/videoView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/videoView2" />
@@ -106,9 +96,22 @@
             android:layout_height="231dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.542"
+            app:layout_constraintHorizontal_bias="0.457"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintVertical_bias="0.159" />
+
+        <Button
+            android:id="@+id/navToBreathingExerciseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go to Breathing Exercise"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/videoView3"
+            android:layout_marginTop="16dp"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

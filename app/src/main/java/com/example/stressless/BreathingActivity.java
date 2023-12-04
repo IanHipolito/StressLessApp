@@ -1,6 +1,8 @@
 package com.example.stressless;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.VideoView;
 import android.net.Uri;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,12 @@ public class BreathingActivity extends AppCompatActivity {
         setVideoViewListener(videoView1);
         setVideoViewListener(videoView2);
         setVideoViewListener(videoView3);
+
+        Button navToBreathingExerciseButton = findViewById(R.id.navToBreathingExerciseButton);
+        navToBreathingExerciseButton.setOnClickListener(v -> {
+            Intent intent = new Intent(BreathingActivity.this, BreathingExerciseActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void setVideoViewListener(VideoView videoView) {

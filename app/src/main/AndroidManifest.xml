@@ -36,9 +36,9 @@
             android:name=".MindfulnessActivity">
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".SoundLevelActivity">-->
-<!--        </activity>-->
+        <activity
+            android:name=".BreathingExerciseActivity">
+        </activity>
 
 
     </application>
