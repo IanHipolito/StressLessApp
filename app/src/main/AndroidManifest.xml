@@ -40,6 +40,10 @@
             android:name=".BreathingExerciseActivity">
         </activity>
 
+        <activity
+            android:name=".JournalEntriesActivity">
+        </activity>
+
 
     </application>
 
