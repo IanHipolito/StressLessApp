@@ -8,7 +8,6 @@ import java.util.Date;
 public class JournalEntry {
     @PrimaryKey(autoGenerate = true)
     public int id;
-
     public String entryText;
     public Date entryDate;
     public Date timestamp;
@@ -32,19 +31,4 @@ public class JournalEntry {
         this.entryText = entryText;
     }
 
-    public Date getEntryDate() {
-        return entryDate;
-    }
-
-    public void setEntryDate(Date entryDate) {
-        this.entryDate = entryDate;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
 }

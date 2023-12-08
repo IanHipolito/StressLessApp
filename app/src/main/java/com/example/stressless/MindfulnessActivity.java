@@ -25,7 +25,6 @@ public class MindfulnessActivity extends AppCompatActivity {
     private TextView lastSavedTime;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
     private JournalEntryDatabase db;
-
     private Button viewEntriesButton;
 
 

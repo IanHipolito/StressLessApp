@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
-
 import com.example.stressless.database.JournalEntryDatabase;
 import com.example.stressless.database.entities.JournalEntriesAdapter;
 import com.example.stressless.database.entities.JournalEntry;
 import java.util.List;
 
-public class JournalEntriesActivity extends AppCompatActivity {
+public class JournalEntriesActivity extends AppCompatActivity implements OnJournalEntryDeleteListener {
 
     private RecyclerView recyclerView;
     private JournalEntriesAdapter adapter;
@@ -39,8 +38,27 @@ public class JournalEntriesActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        adapter = new JournalEntriesAdapter(entries);
+                        adapter = new JournalEntriesAdapter(entries, JournalEntriesActivity.this);
                         recyclerView.setAdapter(adapter);
+                    }
+                });
+            }
+        }).start();
+    }
+
+    @Override
+    public void onDeleteJournalEntry(int position) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<JournalEntry> entries = db.journalEntryDAO().getAllEntries();
+                JournalEntry entryToDelete = entries.get(position);
+                db.journalEntryDAO().delete(entryToDelete);
+                entries.remove(position);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyItemRemoved(position);
                     }
                 });
             }
