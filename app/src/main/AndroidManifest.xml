@@ -44,6 +44,10 @@
             android:name=".JournalEntriesActivity">
         </activity>
 
+        <activity
+            android:name=".VolumeTesterActivity">
+        </activity>
+
 
     </application>
 

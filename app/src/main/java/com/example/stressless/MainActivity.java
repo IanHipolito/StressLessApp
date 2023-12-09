@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonMeditation = findViewById(R.id.buttonMeditation);
         Button buttonBreathing = findViewById(R.id.buttonBreathing);
         Button buttonMindfulness = findViewById(R.id.buttonMindfulness);
+        Button buttonVolumeTester = findViewById(R.id.buttonVolumeTester);
 
         buttonMeditation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        buttonVolumeTester.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, VolumeTesterActivity.class));
+            }
+        });
 
     }
 }
