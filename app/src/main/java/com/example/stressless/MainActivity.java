@@ -4,7 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,12 +14,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button buttonMeditation = findViewById(R.id.buttonMeditation);
-        Button buttonBreathing = findViewById(R.id.buttonBreathing);
-        Button buttonMindfulness = findViewById(R.id.buttonMindfulness);
-        Button buttonVolumeTester = findViewById(R.id.buttonVolumeTester);
+        ImageView ImageViewMeditation = findViewById(R.id.ImageViewMeditation);
+        ImageView ImageViewBreathing = findViewById(R.id.ImageViewBreathing);
+        ImageView ImageViewMindfulness = findViewById(R.id.ImageViewMindfulness);
+        ImageView ImageViewVolumeTester = findViewById(R.id.ImageViewVolumeTester);
 
-        buttonMeditation.setOnTouchListener(new View.OnTouchListener() {
+        ImageViewMeditation.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 startActivity(new Intent(MainActivity.this, MeditationActivity.class));
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonBreathing.setOnTouchListener(new View.OnTouchListener() {
+        ImageViewBreathing.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 startActivity(new Intent(MainActivity.this, BreathingActivity.class));
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonMindfulness.setOnTouchListener(new View.OnTouchListener() {
+        ImageViewMindfulness.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 startActivity(new Intent(MainActivity.this, MindfulnessActivity.class));
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonVolumeTester.setOnTouchListener(new View.OnTouchListener() {
+        ImageViewVolumeTester.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 startActivity(new Intent(MainActivity.this, VolumeTesterActivity.class));
