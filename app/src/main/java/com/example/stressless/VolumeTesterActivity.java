@@ -7,6 +7,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,14 +32,18 @@ public class VolumeTesterActivity extends AppCompatActivity {
         statusTextView = findViewById(R.id.statusTextView);
         startStopButton = findViewById(R.id.startStopButton);
 
-        startStopButton.setOnClickListener(new View.OnClickListener() {
+        startStopButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                if (isRecording) {
-                    stopRecording();
-                } else {
-                    startRecording();
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (isRecording) {
+                        stopRecording();
+                    } else {
+                        startRecording();
+                    }
+                    return true;
                 }
+                return false;
             }
         });
     }

@@ -3,6 +3,7 @@ package com.example.stressless;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -42,18 +43,23 @@ public class MeditationActivity extends AppCompatActivity {
         songListView.setAdapter(adapter);
         updateSongTitle(currentSongIndex);
 
-        playPauseButton.setOnClickListener(new View.OnClickListener() {
+        playPauseButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.pause();
-                    playPauseButton.setImageResource(R.drawable.baseline_play_arrow_24);
-                } else {
-                    mediaPlayer.start();
-                    playPauseButton.setImageResource(R.drawable.baseline_pause_24);
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (mediaPlayer.isPlaying()) {
+                        mediaPlayer.pause();
+                        playPauseButton.setImageResource(R.drawable.baseline_play_arrow_24);
+                    } else {
+                        mediaPlayer.start();
+                        playPauseButton.setImageResource(R.drawable.baseline_pause_24);
+                    }
+                    return true;
                 }
+                return false;
             }
         });
+
 
         previousButton.setOnClickListener(view -> changeSong(false));
         nextButton.setOnClickListener(view -> changeSong(true));

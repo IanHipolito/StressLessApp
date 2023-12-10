@@ -1,6 +1,7 @@
 package com.example.stressless.database.entities;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,13 +34,17 @@ public class JournalEntriesAdapter extends RecyclerView.Adapter<JournalEntriesAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         JournalEntry entry = journalEntries.get(position);
         holder.entryTextView.setText(entry.getEntryText());
-        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+        holder.deleteButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                int currentPosition = holder.getBindingAdapterPosition();
-                if (currentPosition != RecyclerView.NO_POSITION) {
-                    deleteListener.onDeleteJournalEntry(currentPosition);
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    int currentPosition = holder.getBindingAdapterPosition();
+                    if (currentPosition != RecyclerView.NO_POSITION) {
+                        deleteListener.onDeleteJournalEntry(currentPosition);
+                    }
+                    return true;
                 }
+                return false;
             }
         });
 

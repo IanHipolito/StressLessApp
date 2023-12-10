@@ -3,6 +3,7 @@ package com.example.stressless;
 import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
@@ -39,23 +40,33 @@ public class MindfulnessActivity extends AppCompatActivity {
 
         viewEntriesButton = findViewById(R.id.viewEntriesButton);
 
-        viewEntriesButton.setOnClickListener(new View.OnClickListener() {
+        viewEntriesButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                navigateToJournalEntriesList();
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    navigateToJournalEntriesList();
+                    return true;
+                }
+                return false;
             }
         });
+
 
         db = Room.databaseBuilder(getApplicationContext(),
                 JournalEntryDatabase.class, "journal-entry-database").build();
 
 
-        saveEntryButton.setOnClickListener(new View.OnClickListener() {
+        saveEntryButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                saveJournalEntry();
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    saveJournalEntry();
+                    return true;
+                }
+                return false;
             }
         });
+
     }
 
     private String getDailyChallenge() {
