@@ -2,6 +2,7 @@ package com.example.stressless;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -31,6 +33,59 @@ public class VolumeTesterActivity extends AppCompatActivity {
         decibelTextView = findViewById(R.id.decibelTextView);
         statusTextView = findViewById(R.id.statusTextView);
         startStopButton = findViewById(R.id.startStopButton);
+
+        ImageButton nav_home = findViewById(R.id.nav_home);
+        ImageButton nav_mindfulness = findViewById(R.id.nav_mindfulness);
+        ImageButton nav_meditation = findViewById(R.id.nav_meditation);
+        ImageButton nav_breathing = findViewById(R.id.nav_breathing);
+
+        nav_home.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(VolumeTesterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_mindfulness.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(VolumeTesterActivity.this, MindfulnessActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_meditation.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(VolumeTesterActivity.this, VolumeTesterActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_breathing.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(VolumeTesterActivity.this, BreathingExerciseActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         startStopButton.setOnTouchListener(new View.OnTouchListener() {
             @Override

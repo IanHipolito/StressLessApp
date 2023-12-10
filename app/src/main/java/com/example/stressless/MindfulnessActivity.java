@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.stressless.database.JournalEntryDatabase;
 import com.example.stressless.database.entities.JournalEntry;
@@ -39,6 +40,59 @@ public class MindfulnessActivity extends AppCompatActivity {
         challengeOfTheDay.setText(todayChallenge);
 
         viewEntriesButton = findViewById(R.id.viewEntriesButton);
+
+        ImageButton nav_home = findViewById(R.id.nav_home);
+        ImageButton nav_meditation = findViewById(R.id.nav_meditation);
+        ImageButton nav_decibel = findViewById(R.id.nav_decibel);
+        ImageButton nav_breathing = findViewById(R.id.nav_breathing);
+
+        nav_breathing.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(MindfulnessActivity.this, SettingsActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_home.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(MindfulnessActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_meditation.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(MindfulnessActivity.this, MindfulnessActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_decibel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(MindfulnessActivity.this, VolumeTesterActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         viewEntriesButton.setOnTouchListener(new View.OnTouchListener() {
             @Override

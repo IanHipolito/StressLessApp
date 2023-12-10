@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/appbackground5"
-    android:padding="16dp">
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/top_bg_exercise"/>
 
     <TextView
-        android:id="@+id/challengeOfTheDay"
+        android:id="@+id/TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="4mm"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
         android:textAlignment="center"
-        android:text="Challenge of the day will appear here"
+        android:text="Let It Out"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
 
     <EditText
         android:id="@+id/journalEntry"
@@ -24,7 +31,7 @@
         android:textSize="4mm"
         android:textAlignment="center"
         android:hint="Write your journal entry here"
-        android:layout_below="@id/challengeOfTheDay"
+        android:layout_below="@id/top_view"
         android:layout_marginTop="22dp"
         android:inputType="textMultiLine"
         android:minHeight="150dp" />
@@ -57,5 +64,45 @@
         android:layout_below="@id/lastSavedTime"
         android:layout_centerHorizontal="true"/>
 
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#E0E0E0">
 
+        <ImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/baseline_home_24"
+            android:background="?attr/selectableItemBackground"/>
+
+        <ImageButton
+            android:id="@+id/nav_meditation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_library_music_24"/>
+
+        <ImageButton
+            android:id="@+id/nav_breathing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_chair_24" />
+
+        <ImageButton
+            android:id="@+id/nav_decibel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_volume_up_24"/>
+    </LinearLayout>
 </RelativeLayout>

@@ -2,8 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="#F0F4F7">
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/top_bg_exercise"/>
 
     <View
         android:id="@+id/breathingCircleLarge"
@@ -34,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Inhale"
         android:textSize="18sp"
-        android:textColor="#333333"
+        android:textColor="@color/black"
         android:layout_centerInParent="true" />
 
     <TextView
@@ -44,16 +49,57 @@
         android:text="Improve Your Breathing"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
-        android:textSize="3mm"
-        android:textStyle="bold"/>
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
 
-    <ImageButton
-        android:id="@+id/settingsButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:background="?attr/selectableItemBackground"
-        android:src="@drawable/baseline_settings_24"/>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#E0E0E0">
 
+        <ImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:src="@drawable/baseline_home_24"
+            android:background="?attr/selectableItemBackground"/>
+
+        <ImageButton
+            android:id="@+id/nav_meditation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_library_music_24"/>
+
+        <ImageButton
+            android:id="@+id/nav_mindfulness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_person_24"/>
+
+        <ImageButton
+            android:id="@+id/nav_decibel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_volume_up_24"/>
+
+        <ImageButton
+            android:id="@+id/settingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_settings_24" />
+    </LinearLayout>
 </RelativeLayout>

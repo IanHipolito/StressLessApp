@@ -1,8 +1,10 @@
 package com.example.stressless;
 
 import android.media.MediaPlayer;
+import android.media.RouteListingPreference;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +12,11 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.content.Intent;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MeditationActivity extends AppCompatActivity {
@@ -25,7 +32,6 @@ public class MeditationActivity extends AppCompatActivity {
     private String[] songNames = {"Meditation Music 1", "Meditation Music 2", "Meditation Music 3", "Meditation Music 4", "Meditation Music 5"};
     private int[] songs = {R.raw.meditation_music, R.raw.meditation_music1, R.raw.meditation_music2, R.raw.meditation_music3, R.raw.meditation_music4};
     private int currentSongIndex = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,60 @@ public class MeditationActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, songNames);
         songListView.setAdapter(adapter);
         updateSongTitle(currentSongIndex);
+
+        ImageButton nav_home = findViewById(R.id.nav_home);
+        ImageButton nav_mindfulness = findViewById(R.id.nav_mindfulness);
+        ImageButton nav_decibel = findViewById(R.id.nav_decibel);
+        ImageButton nav_breathing = findViewById(R.id.nav_breathing);
+
+        nav_home.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(MeditationActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_mindfulness.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(MeditationActivity.this, MindfulnessActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_decibel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(MeditationActivity.this, VolumeTesterActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_breathing.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(MeditationActivity.this, BreathingExerciseActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         playPauseButton.setOnTouchListener(new View.OnTouchListener() {
             @Override

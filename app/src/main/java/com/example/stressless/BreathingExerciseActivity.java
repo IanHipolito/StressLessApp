@@ -14,9 +14,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 public class BreathingExerciseActivity extends AppCompatActivity {
     private View breathingCircle, breathingCircleMedium, breathingCircleLarge;
-    private TextView breathingInstruction, timerTextView;
+    private TextView breathingInstruction;
     private Handler handler = new Handler();
-    private NumberPicker timePicker;
     private boolean isExerciseRunning = false;
     private long inhaleDuration = 4000;
     private long holdDuration = 7000;
@@ -35,10 +34,71 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         loadCustomTimings();
 
         ImageButton settingsButton = findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(BreathingExerciseActivity.this, SettingsActivity.class);
-            startActivity(intent);
+        ImageButton nav_home = findViewById(R.id.nav_home);
+        ImageButton nav_mindfulness = findViewById(R.id.nav_mindfulness);
+        ImageButton nav_decibel = findViewById(R.id.nav_decibel);
+        ImageButton nav_meditation = findViewById(R.id.nav_meditation);
+
+        settingsButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(BreathingExerciseActivity.this, SettingsActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
         });
+
+        nav_home.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(BreathingExerciseActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_mindfulness.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(BreathingExerciseActivity.this, MindfulnessActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_decibel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(BreathingExerciseActivity.this, VolumeTesterActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        nav_meditation.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Intent intent = new Intent(BreathingExerciseActivity.this, MeditationActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         breathingCircle.setOnTouchListener(new View.OnTouchListener() {
             @Override

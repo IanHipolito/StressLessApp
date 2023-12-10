@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="#EFEFEF">
 
     <TextView
@@ -29,7 +28,7 @@
         android:layout_below="@id/decibelTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Meditation Status"
+        android:text="Test The Noise Level In The Room"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textColor="#333" />
@@ -43,4 +42,46 @@
         android:layout_marginTop="20dp"
         android:text="Start" />
 
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#E0E0E0">
+
+        <ImageButton
+            android:id="@+id/nav_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:src="@drawable/baseline_home_24"
+            android:background="?attr/selectableItemBackground"/>
+
+        <ImageButton
+            android:id="@+id/nav_meditation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_library_music_24"/>
+
+        <ImageButton
+            android:id="@+id/nav_breathing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_chair_24" />
+
+        <ImageButton
+            android:id="@+id/nav_mindfulness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/baseline_person_24"/>
+
+    </LinearLayout>
 </RelativeLayout>
