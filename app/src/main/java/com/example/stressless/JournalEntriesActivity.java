@@ -11,7 +11,6 @@ import com.example.stressless.database.entities.JournalEntry;
 import java.util.List;
 
 public class JournalEntriesActivity extends AppCompatActivity implements OnJournalEntryDeleteListener {
-
     private RecyclerView recyclerView;
     private JournalEntriesAdapter adapter;
     private JournalEntryDatabase db;

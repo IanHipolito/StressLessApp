@@ -2,13 +2,12 @@ package com.example.stressless;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,34 +18,37 @@ public class MainActivity extends AppCompatActivity {
         Button buttonMindfulness = findViewById(R.id.buttonMindfulness);
         Button buttonVolumeTester = findViewById(R.id.buttonVolumeTester);
 
-        buttonMeditation.setOnClickListener(new View.OnClickListener() {
+        buttonMeditation.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View v, MotionEvent event) {
                 startActivity(new Intent(MainActivity.this, MeditationActivity.class));
+                return true;
             }
         });
 
-        buttonBreathing.setOnClickListener(new View.OnClickListener() {
+        buttonBreathing.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View v, MotionEvent event) {
                 startActivity(new Intent(MainActivity.this, BreathingActivity.class));
+                return true;
             }
         });
 
-        buttonMindfulness.setOnClickListener(new View.OnClickListener() {
+        buttonMindfulness.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View v, MotionEvent event) {
                 startActivity(new Intent(MainActivity.this, MindfulnessActivity.class));
+                return true;
             }
         });
 
-        buttonVolumeTester.setOnClickListener(new View.OnClickListener() {
+        buttonVolumeTester.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View v, MotionEvent event) {
                 startActivity(new Intent(MainActivity.this, VolumeTesterActivity.class));
+                return true;
             }
         });
-
     }
 }
 

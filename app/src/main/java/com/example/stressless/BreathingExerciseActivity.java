@@ -1,34 +1,25 @@
 package com.example.stressless;
 
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 public class BreathingExerciseActivity extends AppCompatActivity {
-
     private View breathingCircle, breathingCircleMedium, breathingCircleLarge;
     private TextView breathingInstruction, timerTextView;
-    private Button startStopBreathingButton;
     private Handler handler = new Handler();
-
     private CountDownTimer countDownTimer;
     private long totalTime = 60000;
     private NumberPicker timePicker;
-
     private boolean isExerciseRunning = false;
-
     private ObjectAnimator currentScaleXOriginal, currentScaleYOriginal;
     private ObjectAnimator currentScaleXMedium, currentScaleYMedium;
     private ObjectAnimator currentScaleXLarge, currentScaleYLarge;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +30,6 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         breathingCircleMedium = findViewById(R.id.breathingCircleMedium);
         breathingCircleLarge = findViewById(R.id.breathingCircleLarge);
         breathingInstruction = findViewById(R.id.breathingInstruction);
-        startStopBreathingButton = findViewById(R.id.startBreathingButton);
         timerTextView = findViewById(R.id.timerTextView);
         timePicker = findViewById(R.id.timePicker);
 
@@ -47,15 +37,20 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         timePicker.setMaxValue(300);
         timePicker.setValue(60);
 
-        startStopBreathingButton.setOnClickListener(v -> {
-            if (!isExerciseRunning) {
-                isExerciseRunning = true;
-                startStopBreathingButton.setText("Stop Exercise");
-                long totalTime = timePicker.getValue() * 1000;
-                startBreathingExercise();
-                startTimer(totalTime);
-            } else {
-                stopBreathingExercise();
+        breathingCircle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (!isExerciseRunning) {
+                        isExerciseRunning = true;
+                        long totalTime = timePicker.getValue() * 1000;
+                        startBreathingExercise();
+                        startTimer(totalTime);
+                    } else {
+                        stopBreathingExercise();
+                    }
+                }
+                return false;
             }
         });
     }
@@ -85,7 +80,6 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         breathingCircleLarge.setScaleY(1f);
 
         isExerciseRunning = false;
-        startStopBreathingButton.setText("Start Exercise");
         timerTextView.setText("Exercise Stopped");
     }
 
@@ -100,7 +94,7 @@ public class BreathingExerciseActivity extends AppCompatActivity {
 
         long animationDuration = 4000;
 
-        if (step == 0) { // Inhale step
+        if (step == 0) {
             breathingInstruction.setText("Inhale");
 
             ObjectAnimator scaleXOriginal = ObjectAnimator.ofFloat(breathingCircle, "scaleX", originalScaleFactor);
@@ -127,12 +121,12 @@ public class BreathingExerciseActivity extends AppCompatActivity {
 
             handler.postDelayed(() -> animateBreathing(1), animationDuration);
 
-        } else if (step == 1) { // Hold step
+        } else if (step == 1) {
             breathingInstruction.setText("Hold");
 
             handler.postDelayed(() -> animateBreathing(2), 7000);
 
-        } else if (step == 2) { // Exhale step
+        } else if (step == 2) {
             breathingInstruction.setText("Exhale");
 
             ObjectAnimator scaleXOriginal = ObjectAnimator.ofFloat(breathingCircle, "scaleX", 1f);
@@ -160,7 +154,6 @@ public class BreathingExerciseActivity extends AppCompatActivity {
             handler.postDelayed(() -> animateBreathing(0), animationDuration);
         }
     }
-
 
     private void startTimer(long time) {
         countDownTimer = new CountDownTimer(time, 1000) {

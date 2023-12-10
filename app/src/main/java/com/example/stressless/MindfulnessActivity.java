@@ -1,7 +1,6 @@
 package com.example.stressless;
 
 import androidx.room.Room;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +12,9 @@ import com.example.stressless.database.entities.JournalEntry;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MindfulnessActivity extends AppCompatActivity {
-
-
     private EditText journalEntry;
     private Button saveEntryButton;
     private TextView challengeOfTheDay;

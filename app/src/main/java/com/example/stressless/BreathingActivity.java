@@ -8,7 +8,6 @@ import android.net.Uri;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BreathingActivity extends AppCompatActivity {
-
     private VideoView videoView1, videoView2, videoView3;
 
     @Override
