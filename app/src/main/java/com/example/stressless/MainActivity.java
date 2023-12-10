@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ImageView ImageViewMeditation = findViewById(R.id.ImageViewMeditation);
-        ImageView ImageViewBreathing = findViewById(R.id.ImageViewBreathing);
+        ImageView ImageViewBreathingExercise = findViewById(R.id.ImageViewBreathingExercise);
         ImageView ImageViewMindfulness = findViewById(R.id.ImageViewMindfulness);
         ImageView ImageViewVolumeTester = findViewById(R.id.ImageViewVolumeTester);
 
@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageViewBreathing.setOnTouchListener(new View.OnTouchListener() {
+        ImageViewBreathingExercise.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                startActivity(new Intent(MainActivity.this, BreathingActivity.class));
+                startActivity(new Intent(MainActivity.this, BreathingExerciseActivity.class));
                 return true;
             }
         });

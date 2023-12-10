@@ -29,10 +29,6 @@
         </activity>
 
         <activity
-            android:name=".BreathingActivity">
-        </activity>
-
-        <activity
             android:name=".MindfulnessActivity">
         </activity>
 
