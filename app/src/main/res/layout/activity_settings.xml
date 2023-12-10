@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inhale Duration (seconds)"
+        android:textSize="18sp"/>
+
+    <NumberPicker
+        android:id="@+id/numberPickerInhale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hold Duration (seconds)"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"/>
+
+    <NumberPicker
+        android:id="@+id/numberPickerHold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exhale Duration (seconds)"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"/>
+
+    <NumberPicker
+        android:id="@+id/numberPickerExhale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:onClick="onSaveClicked"
+        android:text="Save" />
+
+</LinearLayout>

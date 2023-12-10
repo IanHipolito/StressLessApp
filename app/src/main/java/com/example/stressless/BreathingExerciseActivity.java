@@ -1,11 +1,14 @@
 package com.example.stressless;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +16,11 @@ public class BreathingExerciseActivity extends AppCompatActivity {
     private View breathingCircle, breathingCircleMedium, breathingCircleLarge;
     private TextView breathingInstruction, timerTextView;
     private Handler handler = new Handler();
-    private CountDownTimer countDownTimer;
-    private long totalTime = 60000;
     private NumberPicker timePicker;
     private boolean isExerciseRunning = false;
-    private ObjectAnimator currentScaleXOriginal, currentScaleYOriginal;
-    private ObjectAnimator currentScaleXMedium, currentScaleYMedium;
-    private ObjectAnimator currentScaleXLarge, currentScaleYLarge;
+    private long inhaleDuration = 4000;
+    private long holdDuration = 7000;
+    private long exhaleDuration = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,14 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         breathingCircleMedium = findViewById(R.id.breathingCircleMedium);
         breathingCircleLarge = findViewById(R.id.breathingCircleLarge);
         breathingInstruction = findViewById(R.id.breathingInstruction);
-        timerTextView = findViewById(R.id.timerTextView);
-        timePicker = findViewById(R.id.timePicker);
 
-        timePicker.setMinValue(1);
-        timePicker.setMaxValue(300);
-        timePicker.setValue(60);
+        loadCustomTimings();
+
+        ImageButton settingsButton = findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(BreathingExerciseActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
 
         breathingCircle.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -43,9 +46,7 @@ public class BreathingExerciseActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     if (!isExerciseRunning) {
                         isExerciseRunning = true;
-                        long totalTime = timePicker.getValue() * 1000;
                         startBreathingExercise();
-                        startTimer(totalTime);
                     } else {
                         stopBreathingExercise();
                     }
@@ -55,32 +56,30 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         });
     }
 
+    private void loadCustomTimings() {
+        SharedPreferences preferences = getSharedPreferences("BreathingAppSettings", MODE_PRIVATE);
+        inhaleDuration = preferences.getLong("inhaleDuration", 4000);
+        holdDuration = preferences.getLong("holdDuration", 7000);
+        exhaleDuration = preferences.getLong("exhaleDuration", 4000);
+    }
+
     private void startBreathingExercise() {
         animateBreathing(0);
     }
 
     private void stopBreathingExercise() {
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-        }
         handler.removeCallbacksAndMessages(null);
+        isExerciseRunning = false;
+        resetBreathingCircles();
+    }
 
-        if (currentScaleXOriginal != null) currentScaleXOriginal.cancel();
-        if (currentScaleYOriginal != null) currentScaleYOriginal.cancel();
-        if (currentScaleXMedium != null) currentScaleXMedium.cancel();
-        if (currentScaleYMedium != null) currentScaleYMedium.cancel();
-        if (currentScaleXLarge != null) currentScaleXLarge.cancel();
-        if (currentScaleYLarge != null) currentScaleYLarge.cancel();
-
+    private void resetBreathingCircles() {
         breathingCircle.setScaleX(1f);
         breathingCircle.setScaleY(1f);
         breathingCircleMedium.setScaleX(1f);
         breathingCircleMedium.setScaleY(1f);
         breathingCircleLarge.setScaleX(1f);
         breathingCircleLarge.setScaleY(1f);
-
-        isExerciseRunning = false;
-        timerTextView.setText("Exercise Stopped");
     }
 
     private void animateBreathing(int step) {
@@ -88,92 +87,42 @@ public class BreathingExerciseActivity extends AppCompatActivity {
             return;
         }
 
-        float largestScaleFactor = 1.5f;
-        float largeScaleFactor = 1.4f;
-        float originalScaleFactor = 1.2f;
-
-        long animationDuration = 4000;
-
         if (step == 0) {
             breathingInstruction.setText("Inhale");
-
-            ObjectAnimator scaleXOriginal = ObjectAnimator.ofFloat(breathingCircle, "scaleX", originalScaleFactor);
-            ObjectAnimator scaleYOriginal = ObjectAnimator.ofFloat(breathingCircle, "scaleY", originalScaleFactor);
-            scaleXOriginal.setDuration(animationDuration);
-            scaleYOriginal.setDuration(animationDuration);
-
-            ObjectAnimator scaleXMedium = ObjectAnimator.ofFloat(breathingCircleMedium, "scaleX", largeScaleFactor);
-            ObjectAnimator scaleYMedium = ObjectAnimator.ofFloat(breathingCircleMedium, "scaleY", largeScaleFactor);
-            scaleXMedium.setDuration(animationDuration);
-            scaleYMedium.setDuration(animationDuration);
-
-            ObjectAnimator scaleXLarge = ObjectAnimator.ofFloat(breathingCircleLarge, "scaleX", largestScaleFactor);
-            ObjectAnimator scaleYLarge = ObjectAnimator.ofFloat(breathingCircleLarge, "scaleY", largestScaleFactor);
-            scaleXLarge.setDuration(animationDuration);
-            scaleYLarge.setDuration(animationDuration);
-
-            scaleXOriginal.start();
-            scaleYOriginal.start();
-            scaleXMedium.start();
-            scaleYMedium.start();
-            scaleXLarge.start();
-            scaleYLarge.start();
-
-            handler.postDelayed(() -> animateBreathing(1), animationDuration);
-
+            startScalingAnimation(breathingCircle, 1.2f, inhaleDuration);
+            startScalingAnimation(breathingCircleMedium, 1.4f, inhaleDuration);
+            startScalingAnimation(breathingCircleLarge, 1.5f, inhaleDuration);
+            handler.postDelayed(() -> animateBreathing(1), inhaleDuration);
         } else if (step == 1) {
             breathingInstruction.setText("Hold");
-
-            handler.postDelayed(() -> animateBreathing(2), 7000);
-
+            handler.postDelayed(() -> animateBreathing(2), holdDuration);
         } else if (step == 2) {
             breathingInstruction.setText("Exhale");
-
-            ObjectAnimator scaleXOriginal = ObjectAnimator.ofFloat(breathingCircle, "scaleX", 1f);
-            ObjectAnimator scaleYOriginal = ObjectAnimator.ofFloat(breathingCircle, "scaleY", 1f);
-            scaleXOriginal.setDuration(animationDuration);
-            scaleYOriginal.setDuration(animationDuration);
-
-            ObjectAnimator scaleXMedium = ObjectAnimator.ofFloat(breathingCircleMedium, "scaleX", 1f);
-            ObjectAnimator scaleYMedium = ObjectAnimator.ofFloat(breathingCircleMedium, "scaleY", 1f);
-            scaleXMedium.setDuration(animationDuration);
-            scaleYMedium.setDuration(animationDuration);
-
-            ObjectAnimator scaleXLarge = ObjectAnimator.ofFloat(breathingCircleLarge, "scaleX", 1f);
-            ObjectAnimator scaleYLarge = ObjectAnimator.ofFloat(breathingCircleLarge, "scaleY", 1f);
-            scaleXLarge.setDuration(animationDuration);
-            scaleYLarge.setDuration(animationDuration);
-
-            scaleXOriginal.start();
-            scaleYOriginal.start();
-            scaleXMedium.start();
-            scaleYMedium.start();
-            scaleXLarge.start();
-            scaleYLarge.start();
-
-            handler.postDelayed(() -> animateBreathing(0), animationDuration);
+            startScalingAnimation(breathingCircle, 1f, exhaleDuration);
+            startScalingAnimation(breathingCircleMedium, 1f, exhaleDuration);
+            startScalingAnimation(breathingCircleLarge, 1f, exhaleDuration);
+            handler.postDelayed(() -> animateBreathing(0), exhaleDuration);
         }
     }
 
-    private void startTimer(long time) {
-        countDownTimer = new CountDownTimer(time, 1000) {
-            public void onTick(long millisUntilFinished) {
-                timerTextView.setText("" + millisUntilFinished / 1000);
-            }
+    private void startScalingAnimation(View view, float scaleFactor, long duration) {
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(view, "scaleX", scaleFactor);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(view, "scaleY", scaleFactor);
+        scaleX.setDuration(duration);
+        scaleY.setDuration(duration);
+        scaleX.start();
+        scaleY.start();
+    }
 
-            public void onFinish() {
-                timerTextView.setText("Done!");
-                stopBreathingExercise();
-            }
-        }.start();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadCustomTimings();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-        }
         handler.removeCallbacksAndMessages(null);
     }
 }

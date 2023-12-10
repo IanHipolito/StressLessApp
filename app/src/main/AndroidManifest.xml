@@ -48,6 +48,10 @@
             android:name=".VolumeTesterActivity">
         </activity>
 
+        <activity
+            android:name=".SettingsActivity">
+        </activity>
+
 
     </application>
 
