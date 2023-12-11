@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/alice_blue">
 
     <View
         android:id="@+id/top_view"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@drawable/top_bg_exercise"/>
+        android:background="@drawable/top_bg_mindfulness"/>
 
     <TextView
         android:id="@+id/TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginTop="30dp"
@@ -29,7 +30,8 @@
         android:textColorHint="@color/black"
         android:textSize="4mm"
         android:textAlignment="center"
-        android:hint="Write your journal entry here"
+        android:textStyle="bold"
+        android:hint="Journal Entry"
         android:layout_below="@id/top_view"
         android:layout_marginTop="100dp"
         android:inputType="textMultiLine"
@@ -56,6 +58,7 @@
         android:layout_height="wrap_content"
         android:text="Last save time will appear here"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:layout_below="@id/saveEntryButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp" />
@@ -117,8 +120,11 @@
         android:text="Touch to get a random quote"
         android:textSize="18sp"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:padding="16dp"
+        android:textStyle="bold"
         android:layout_below="@id/lastSavedTime"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="70dp"
+        android:background="@drawable/bg_quotes"/>
 </RelativeLayout>

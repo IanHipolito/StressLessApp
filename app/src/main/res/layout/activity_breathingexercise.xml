@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F4F7">
+    android:background="@color/azure">
 
     <View
         android:id="@+id/top_view"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:text="Improve Your Breathing"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginTop="30dp"/>

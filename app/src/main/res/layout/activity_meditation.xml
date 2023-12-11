@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Song Title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"/>
 
