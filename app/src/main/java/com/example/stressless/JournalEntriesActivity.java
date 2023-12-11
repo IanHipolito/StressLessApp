@@ -57,7 +57,7 @@ public class JournalEntriesActivity extends AppCompatActivity implements OnJourn
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        adapter.notifyItemRemoved(position);
+                        loadJournalEntries();
                     }
                 });
             }
