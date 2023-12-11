@@ -11,9 +11,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.stressless.database.JournalEntryDatabase;
 import com.example.stressless.database.entities.JournalEntry;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.List;
+import java.util.Random;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MindfulnessActivity extends AppCompatActivity {
@@ -23,7 +31,7 @@ public class MindfulnessActivity extends AppCompatActivity {
     private TextView lastSavedTime;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
     private JournalEntryDatabase db;
-    private Button viewEntriesButton;
+    private List<String> quotes;
 
 
     @Override
@@ -33,24 +41,29 @@ public class MindfulnessActivity extends AppCompatActivity {
 
         journalEntry = findViewById(R.id.journalEntry);
         saveEntryButton = findViewById(R.id.saveEntryButton);
-        challengeOfTheDay = findViewById(R.id.challengeOfTheDay);
         lastSavedTime = findViewById(R.id.lastSavedTime);
 
-        String todayChallenge = getDailyChallenge();
-        challengeOfTheDay.setText(todayChallenge);
-
-        viewEntriesButton = findViewById(R.id.viewEntriesButton);
-
+        ImageButton nav_entries = findViewById(R.id.nav_entries);
         ImageButton nav_home = findViewById(R.id.nav_home);
         ImageButton nav_meditation = findViewById(R.id.nav_meditation);
         ImageButton nav_decibel = findViewById(R.id.nav_decibel);
         ImageButton nav_breathing = findViewById(R.id.nav_breathing);
 
+        quotes = readQuotesFromCSV();
+        TextView quoteTextView = findViewById(R.id.quoteTextView);
+        quoteTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String randomQuote = getRandomQuote();
+                quoteTextView.setText(randomQuote);
+            }
+        });
+
         nav_breathing.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Intent intent = new Intent(MindfulnessActivity.this, SettingsActivity.class);
+                    Intent intent = new Intent(MindfulnessActivity.this, BreathingExerciseActivity.class);
                     startActivity(intent);
                     return true;
                 }
@@ -74,7 +87,7 @@ public class MindfulnessActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Intent intent = new Intent(MindfulnessActivity.this, MindfulnessActivity.class);
+                    Intent intent = new Intent(MindfulnessActivity.this, MeditationActivity.class);
                     startActivity(intent);
                     return true;
                 }
@@ -94,11 +107,12 @@ public class MindfulnessActivity extends AppCompatActivity {
             }
         });
 
-        viewEntriesButton.setOnTouchListener(new View.OnTouchListener() {
+        nav_entries.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent event) {
+            public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    navigateToJournalEntriesList();
+                    Intent intent = new Intent(MindfulnessActivity.this, JournalEntriesActivity.class);
+                    startActivity(intent);
                     return true;
                 }
                 return false;
@@ -123,10 +137,6 @@ public class MindfulnessActivity extends AppCompatActivity {
 
     }
 
-    private String getDailyChallenge() {
-
-        return "Today's challenge: Spend 5 minutes in meditation focusing on your breath.";
-    }
 
     private void saveJournalEntry() {
         new Thread(new Runnable() {
@@ -152,8 +162,25 @@ public class MindfulnessActivity extends AppCompatActivity {
         }).start();
     }
 
-    private void navigateToJournalEntriesList() {
-        Intent intent = new Intent(MindfulnessActivity.this, JournalEntriesActivity.class);
-        startActivity(intent);
+    private List<String> readQuotesFromCSV() {
+        List<String> quotes = new ArrayList<>();
+        try {
+            InputStream is = getAssets().open("quotes.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                quotes.add(line);
+            }
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return quotes;
     }
+
+    private String getRandomQuote() {
+        Random random = new Random();
+        return quotes.get(random.nextInt(quotes.size()));
+    }
+
 }
