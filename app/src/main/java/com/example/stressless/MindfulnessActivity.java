@@ -65,6 +65,9 @@ public class MindfulnessActivity extends AppCompatActivity {
         ImageButton nav_decibel = findViewById(R.id.nav_decibel);
         ImageButton nav_breathing = findViewById(R.id.nav_breathing);
 
+        // Reference: I took inspiration for the setOnTouchListner code from:
+        //https://developer.android.com/reference/android/view/View.OnTouchListener
+
         // Set touch listeners for navigation buttons, Intents to navigate to to different activities
         nav_breathing.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -125,6 +128,7 @@ public class MindfulnessActivity extends AppCompatActivity {
                 return false;
             }
         });
+        // Reference complete
 
         // Initialize the Room database
         db = Room.databaseBuilder(getApplicationContext(),
@@ -142,9 +146,10 @@ public class MindfulnessActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
+    // Reference: I took inspiration for the new Thread(new Runnable() code from:
+    // https://developer.android.com/guide/components/processes-and-threads
     // Method to save a journal entry to the database
     private void saveJournalEntry() {
         // Start a new thread to perform database operations
@@ -177,7 +182,11 @@ public class MindfulnessActivity extends AppCompatActivity {
             }
         }).start();
     }
+    // Reference complete
 
+
+    // Reference: I took inspiration for the Opening and Reading a CSV code from:
+    // https://www.tutorialspoint.com/how-to-read-the-data-from-a-csv-file-in-java#:~:text=We%20can%20read%20a%20CSV,by%20using%20an%20appropriate%20index.
     // Method to read quotes from a CSV file
     private List<String> readQuotesFromCSV() {
         // Initialize a list to store quotes
@@ -200,6 +209,7 @@ public class MindfulnessActivity extends AppCompatActivity {
         }
         return quotes;
     }
+    // Reference Complete
 
     // Method to get a random quote from the list
     private String getRandomQuote() {

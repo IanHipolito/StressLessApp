@@ -6,6 +6,10 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import java.util.Date;
 
+// Reference: I took inspiration for the following code from:
+// Lab 6B - Demo (Lecture Notes)
+// Reference complete
+
 // Annotation to define a Room Entity with a table name
 @Entity(tableName = "journal_entries")
 public class JournalEntry {

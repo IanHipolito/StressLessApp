@@ -8,6 +8,10 @@ import androidx.room.TypeConverters;
 import com.example.stressless.database.DAOs.JournalEntryDAO;
 import com.example.stressless.database.entities.JournalEntry;
 
+// Reference: I took inspiration for the following code from:
+// Lab 6B - Demo (Lecture Notes)
+// Reference complete
+
 // Annotation to define a Room Database
 @Database(entities = {JournalEntry.class}, version = 1)
 // Annotation to include type converters

@@ -14,6 +14,10 @@ import com.example.stressless.database.OnJournalEntryDeleteListener;
 import com.example.stressless.R;
 import java.util.List;
 
+// Reference: I took inspiration for the following code from:
+// Lab 6B - Demo (Lecture Notes)
+// Reference complete
+
 // Adapter class for RecyclerView that displays journal entries
 public class JournalEntriesAdapter extends RecyclerView.Adapter<JournalEntriesAdapter.ViewHolder> {
 

@@ -43,6 +43,9 @@ public class VolumeTesterActivity extends AppCompatActivity {
         ImageButton nav_meditation = findViewById(R.id.nav_meditation);
         ImageButton nav_breathing = findViewById(R.id.nav_breathing);
 
+        // Reference: I took inspiration for the setOnTouchListner code from:
+        //https://developer.android.com/reference/android/view/View.OnTouchListener
+
         // Set touch listeners for navigation buttons, Intents to navigate to to different activities
         nav_home.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -106,8 +109,12 @@ public class VolumeTesterActivity extends AppCompatActivity {
                 return false;
             }
         });
+        // Reference complete
     }
 
+    // Reference: I took inspiration for the AudioRecord and MediaRecorder code from:
+    // https://developer.android.com/reference/android/media/AudioRecord
+    // https://developer.android.com/reference/android/media/AudioRecord
     // Method to start audio recording
     private void startRecording() {
         // Check for audio recording permission
@@ -135,6 +142,7 @@ public class VolumeTesterActivity extends AppCompatActivity {
         }, "AudioRecorder Thread");
         recordingThread.start(); // Start the thread
     }
+    // Reference complete
 
     // Method to stop audio recording
     private void stopRecording() {

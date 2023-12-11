@@ -1,3 +1,4 @@
+// Package declaration
 package com.example.stressless.database;
 
 public interface OnJournalEntryDeleteListener {

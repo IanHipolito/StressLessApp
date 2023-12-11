@@ -43,6 +43,9 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         ImageButton nav_decibel = findViewById(R.id.nav_decibel);
         ImageButton nav_meditation = findViewById(R.id.nav_meditation);
 
+        // Reference: I took inspiration for the setOnTouchListner code from:
+        //https://developer.android.com/reference/android/view/View.OnTouchListener
+
         // Set touch listeners for navigation buttons, Intents to navigate to to different activities
         settingsButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -103,6 +106,7 @@ public class BreathingExerciseActivity extends AppCompatActivity {
                 return false;
             }
         });
+        // Reference complete
 
         // Set a touch listener on the breathingCircle view
         breathingCircle.setOnTouchListener(new View.OnTouchListener() {
@@ -125,7 +129,10 @@ public class BreathingExerciseActivity extends AppCompatActivity {
 
     // Method to load custom timing settings for the breathing exercise
     private void loadCustomTimings() {
+        // Reference: I took inspiration for the SharedPreferences code from:
+        // https://developer.android.com/reference/android/content/SharedPreferences
         SharedPreferences preferences = getSharedPreferences("BreathingAppSettings", MODE_PRIVATE);
+        // Reference Complete
         inhaleDuration = preferences.getLong("inhaleDuration", 4000);
         holdDuration = preferences.getLong("holdDuration", 7000);
         exhaleDuration = preferences.getLong("exhaleDuration", 4000);
@@ -181,6 +188,9 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         }
     }
 
+    // Reference: I took inspiration for the ObjectAnimator code from:
+    // https://developer.android.com/reference/android/animation/ObjectAnimator
+
     // Method to start the scaling animation on a view
     private void startScalingAnimation(View view, float scaleFactor, long duration) {
         // Create and configure ObjectAnimators for scaling X and Y properties
@@ -192,6 +202,7 @@ public class BreathingExerciseActivity extends AppCompatActivity {
         scaleX.start();
         scaleY.start();
     }
+    // Reference complete
 
     @Override
     protected void onResume() {

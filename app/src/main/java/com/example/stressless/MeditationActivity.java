@@ -57,6 +57,9 @@ public class MeditationActivity extends AppCompatActivity {
         ImageButton nav_decibel = findViewById(R.id.nav_decibel);
         ImageButton nav_breathing = findViewById(R.id.nav_breathing);
 
+        // Reference: I took inspiration for the setOnTouchListner code from:
+        //https://developer.android.com/reference/android/view/View.OnTouchListener
+
         // Set touch listeners for navigation buttons, Intents to navigate to to different activities
         nav_home.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -105,6 +108,7 @@ public class MeditationActivity extends AppCompatActivity {
                 return false;
             }
         });
+        // Reference complete
 
         // Set an OnTouchListener on the playPauseButton
         playPauseButton.setOnTouchListener(new View.OnTouchListener() {
@@ -139,6 +143,9 @@ public class MeditationActivity extends AppCompatActivity {
 
         songProgressBar.setMax(mediaPlayer.getDuration());
 
+        // Reference: I took inspiration for the SeekBar code from:
+        // https://developer.android.com/reference/android/widget/SeekBar.OnSeekBarChangeListener
+
         // Set up SeekBar listener for song progress interaction
         songProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -164,6 +171,7 @@ public class MeditationActivity extends AppCompatActivity {
         // Initialize the song progress bar
         updateProgressBar();
     }
+    // Reference Complete
 
     // Method to update the progress bar periodically
     private void updateProgressBar() {
@@ -188,6 +196,9 @@ public class MeditationActivity extends AppCompatActivity {
         songTitleTextView.setText(songNames[currentSongIndex]);
     }
 
+    // Reference: I took inspiration for the MediaPlayer code from:
+    //https://developer.android.com/reference/android/media/MediaPlayer
+
     // Method to play a song
     private void playSong(int songIndex) {
         // Release the current MediaPlayer resource
@@ -203,6 +214,7 @@ public class MeditationActivity extends AppCompatActivity {
         songProgressBar.setMax(mediaPlayer.getDuration());
         updateProgressBar();
     }
+    // Reference complete
 
     // Method to change the song
     private void changeSong(boolean next) {
@@ -215,6 +227,8 @@ public class MeditationActivity extends AppCompatActivity {
         playSong(currentSongIndex); // Play the selected song
     }
 
+    // Reference: I took inspiration for the MediaPlayer code from:
+    //https://developer.android.com/reference/android/media/MediaPlayer
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -225,5 +239,6 @@ public class MeditationActivity extends AppCompatActivity {
         }
         progressHandler.removeCallbacks(updateProgressRunnable);
     }
+    // Reference complete
 }
 

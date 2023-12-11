@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         ImageView ImageViewMindfulness = findViewById(R.id.ImageViewMindfulness);
         ImageView ImageViewVolumeTester = findViewById(R.id.ImageViewVolumeTester);
 
+        // Reference: I took inspiration for the setOnTouchListner code from:
+        //https://developer.android.com/reference/android/view/View.OnTouchListener
+
         // Setting touch listeners on the ImageViews and start activities when ImageViews are touched
         ImageViewMeditation.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        // Reference complete
     }
 }
 

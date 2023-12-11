@@ -9,6 +9,9 @@ import androidx.room.Query;
 import com.example.stressless.database.entities.JournalEntry;
 import java.util.List;
 
+// Reference: I took inspiration for the following code from:
+// Lab 6B - Demo (Lecture Notes)
+// Reference complete
 @Dao
 public interface JournalEntryDAO {
     // Method to insert a journal entry
@@ -23,3 +26,4 @@ public interface JournalEntryDAO {
     @Query("SELECT * FROM journal_entries ORDER BY timestamp DESC")
     List<JournalEntry> getAllEntries();
 }
+
