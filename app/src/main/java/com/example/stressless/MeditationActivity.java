@@ -1,10 +1,10 @@
+// Package declaration
 package com.example.stressless;
 
+// Import statements
 import android.media.MediaPlayer;
-import android.media.RouteListingPreference;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,10 +13,6 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.content.Intent;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MeditationActivity extends AppCompatActivity {
@@ -37,7 +33,10 @@ public class MeditationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meditation);
 
+        // Initialize MediaPlayer with the first song
         mediaPlayer = MediaPlayer.create(this, songs[currentSongIndex]);
+
+        // Finding views by their IDs
         playPauseButton = findViewById(R.id.playPauseButton);
         previousButton = findViewById(R.id.previousButton);
         nextButton = findViewById(R.id.nextButton);
@@ -45,15 +44,20 @@ public class MeditationActivity extends AppCompatActivity {
         songListView = findViewById(R.id.songListView);
         songProgressBar = findViewById(R.id.songProgressBar);
 
+        // Create a new ArrayAdapter for the ListView
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, songNames);
+        // Set the adapter to the ListView
         songListView.setAdapter(adapter);
+        // Update the song title text view to show the title of the current song
         updateSongTitle(currentSongIndex);
 
+        // Setting up navigation buttons
         ImageButton nav_home = findViewById(R.id.nav_home);
         ImageButton nav_mindfulness = findViewById(R.id.nav_mindfulness);
         ImageButton nav_decibel = findViewById(R.id.nav_decibel);
         ImageButton nav_breathing = findViewById(R.id.nav_breathing);
 
+        // Set touch listeners for navigation buttons, Intents to navigate to to different activities
         nav_home.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -102,7 +106,7 @@ public class MeditationActivity extends AppCompatActivity {
             }
         });
 
-
+        // Set an OnTouchListener on the playPauseButton
         playPauseButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -120,19 +124,26 @@ public class MeditationActivity extends AppCompatActivity {
             }
         });
 
-
+        // Set an OnClickListener for the previousButton
         previousButton.setOnClickListener(view -> changeSong(false));
+
+        // Set an OnClickListener for the nextButton
         nextButton.setOnClickListener(view -> changeSong(true));
 
+        // Set an OnItemClickListener for the songListView
         songListView.setOnItemClickListener((parent, view, position, id) -> {
+            // Update the current song index to the position clicked
             currentSongIndex = position;
             playSong(currentSongIndex);
         });
 
         songProgressBar.setMax(mediaPlayer.getDuration());
+
+        // Set up SeekBar listener for song progress interaction
         songProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // If the user changed the seek bar, seek to the specific position in the song
                 if (fromUser) {
                     mediaPlayer.seekTo(progress);
                 }
@@ -140,39 +151,51 @@ public class MeditationActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+                // Pause the song when the user starts interacting with the seek bar
                 mediaPlayer.pause();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                // Resume playing the song when user interaction with seek bar stops
                 mediaPlayer.start();
             }
         });
+        // Initialize the song progress bar
         updateProgressBar();
     }
 
+    // Method to update the progress bar periodically
     private void updateProgressBar() {
         progressHandler.postDelayed(updateProgressRunnable, 100);
     }
 
+    // Runnable for updating the progress bar
     private Runnable updateProgressRunnable = new Runnable() {
         public void run() {
             if (mediaPlayer != null) {
+                // Update the progress bar to the current position of the song
                 int mCurrentPosition = mediaPlayer.getCurrentPosition();
                 songProgressBar.setProgress(mCurrentPosition);
             }
+            // Schedule the next update after 100 milliseconds
             progressHandler.postDelayed(this, 100);
         }
     };
 
+    // Method to update the displayed song title
     private void updateSongTitle(int currentSongIndex) {
         songTitleTextView.setText(songNames[currentSongIndex]);
     }
 
+    // Method to play a song
     private void playSong(int songIndex) {
+        // Release the current MediaPlayer resource
         if (mediaPlayer != null) {
             mediaPlayer.release();
         }
+
+        // Create a new MediaPlayer for the selected song
         mediaPlayer = MediaPlayer.create(this, songs[songIndex]);
         mediaPlayer.start();
         updateSongTitle(songIndex);
@@ -181,18 +204,21 @@ public class MeditationActivity extends AppCompatActivity {
         updateProgressBar();
     }
 
+    // Method to change the song
     private void changeSong(boolean next) {
+        // Calculate the index of the next or previous song
         if (next) {
             currentSongIndex = (currentSongIndex + 1) % songs.length;
         } else {
             currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
         }
-        playSong(currentSongIndex);
+        playSong(currentSongIndex); // Play the selected song
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Release MediaPlayer resources and remove callbacks when the activity is destroyed
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;

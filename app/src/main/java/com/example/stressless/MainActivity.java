@@ -1,11 +1,12 @@
+// Pack age Declaration
 package com.example.stressless;
 
+// Import Statements
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,11 +15,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Finding ImageView elements by their IDs
         ImageView ImageViewMeditation = findViewById(R.id.ImageViewMeditation);
         ImageView ImageViewBreathingExercise = findViewById(R.id.ImageViewBreathingExercise);
         ImageView ImageViewMindfulness = findViewById(R.id.ImageViewMindfulness);
         ImageView ImageViewVolumeTester = findViewById(R.id.ImageViewVolumeTester);
 
+        // Setting touch listeners on the ImageViews and start activities when ImageViews are touched
         ImageViewMeditation.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

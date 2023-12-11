@@ -1,5 +1,7 @@
+// Package declaration
 package com.example.stressless;
 
+// Import statements
 import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
@@ -30,15 +32,18 @@ public class VolumeTesterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volume_tester);
 
+        // Initialize views
         decibelTextView = findViewById(R.id.decibelTextView);
         statusTextView = findViewById(R.id.statusTextView);
         startStopButton = findViewById(R.id.startStopButton);
 
+        // Setting up navigation buttons
         ImageButton nav_home = findViewById(R.id.nav_home);
         ImageButton nav_mindfulness = findViewById(R.id.nav_mindfulness);
         ImageButton nav_meditation = findViewById(R.id.nav_meditation);
         ImageButton nav_breathing = findViewById(R.id.nav_breathing);
 
+        // Set touch listeners for navigation buttons, Intents to navigate to to different activities
         nav_home.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -103,12 +108,15 @@ public class VolumeTesterActivity extends AppCompatActivity {
         });
     }
 
+    // Method to start audio recording
     private void startRecording() {
-
+        // Check for audio recording permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            // Request permission if not granted
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 0);
         }
 
+        // Initialize the AudioRecord object with specific parameters
         audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO,
                 AudioFormat.ENCODING_PCM_16BIT, AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO,
                 AudioFormat.ENCODING_PCM_16BIT));
@@ -118,15 +126,19 @@ public class VolumeTesterActivity extends AppCompatActivity {
         statusTextView.setText("Recording...");
         startStopButton.setText("Stop");
 
+        // Create and start a new thread for handling the audio recording
         recordingThread = new Thread(new Runnable() {
             public void run() {
+                // Call the method to calculate decibel level
                 calculateDecibelLevel();
             }
         }, "AudioRecorder Thread");
-        recordingThread.start();
+        recordingThread.start(); // Start the thread
     }
 
+    // Method to stop audio recording
     private void stopRecording() {
+        // Check if the AudioRecord object is not null
         if (audioRecord != null) {
             isRecording = false;
             audioRecord.stop();
@@ -138,17 +150,29 @@ public class VolumeTesterActivity extends AppCompatActivity {
         }
     }
 
+    // Method to calculate the decibel level
     private void calculateDecibelLevel() {
         short[] audioBuffer = new short[AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT)];
+        // Loop to keep reading the audio buffer while recording
         while (isRecording) {
+            // Read the audio data into the buffer
             int numberOfShort = audioRecord.read(audioBuffer, 0, audioBuffer.length);
+            // Variable to store the maximum amplitude
             double maxAmplitude = 0;
+
+            // Iterate over the buffer to find the maximum amplitude
             for (int i = 0; i < numberOfShort; i++) {
                 maxAmplitude = Math.max(maxAmplitude, Math.abs(audioBuffer[i]));
             }
+
+            // Calculate the amplitude
             double amplitude = maxAmplitude / Short.MAX_VALUE;
+            // Reference amplitude for calculating decibels
             double refAmplitude = 0.00002;
+            // Calculate the decibel level
             final double decibelLevel = 20 * Math.log10(amplitude / refAmplitude);
+
+            // Update the UI with the current decibel level
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

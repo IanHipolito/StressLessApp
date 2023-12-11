@@ -1,5 +1,7 @@
+// Package declaration
 package com.example.stressless.database.DAOs;
 
+// Import statements
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -9,12 +11,15 @@ import java.util.List;
 
 @Dao
 public interface JournalEntryDAO {
+    // Method to insert a journal entry
     @Insert
     void insert(JournalEntry journalEntry);
 
+    // Method to delete a journal entry
     @Delete
     void delete(JournalEntry journalEntry);
 
+    // Method to retrieve all journal entries ordered by timestamp
     @Query("SELECT * FROM journal_entries ORDER BY timestamp DESC")
     List<JournalEntry> getAllEntries();
 }
