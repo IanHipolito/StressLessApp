@@ -75,7 +75,7 @@ public class VolumeTesterActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Intent intent = new Intent(VolumeTesterActivity.this, VolumeTesterActivity.class);
+                    Intent intent = new Intent(VolumeTesterActivity.this, MeditationActivity.class);
                     startActivity(intent);
                     return true;
                 }
