@@ -12,6 +12,17 @@
         android:layout_height="200dp"
         android:background="@drawable/bg_view" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stress Less"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -164,17 +175,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stress Less"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
 
 </RelativeLayout>
 

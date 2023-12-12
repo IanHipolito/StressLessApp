@@ -15,7 +15,6 @@ import java.util.Date;
 public class JournalEntry {
     // Annotation for the primary key with auto-generation
     @PrimaryKey(autoGenerate = true)
-
     // Instance Variables
     public int id;
     public String entryText;

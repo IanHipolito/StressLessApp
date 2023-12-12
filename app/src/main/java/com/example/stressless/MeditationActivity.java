@@ -128,11 +128,31 @@ public class MeditationActivity extends AppCompatActivity {
             }
         });
 
-        // Set an OnClickListener for the previousButton
-        previousButton.setOnClickListener(view -> changeSong(false));
+        // Set an OnTouchListener for the previousButton
+        previousButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    // Change to the previous song when the button is touched
+                    changeSong(false);
+                    return true;
+                }
+                return false;
+            }
+        });
 
-        // Set an OnClickListener for the nextButton
-        nextButton.setOnClickListener(view -> changeSong(true));
+        // Set an OnTouchListener for the nextButton
+        nextButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    // Change to the next song when the button is touched
+                    changeSong(true);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         // Set an OnItemClickListener for the songListView
         songListView.setOnItemClickListener((parent, view, position, id) -> {
